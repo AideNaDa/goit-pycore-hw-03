@@ -59,23 +59,30 @@ def normalize_phone(phone_number: str) -> str:
 
     return correct_num
 
-def get_upcoming_birthdays(users):
+def get_upcoming_birthdays(users: list[dict]) -> list[dict]:
+    """
+    Finds birthdays within 7 days and carries over congratulations from weeks
+    """
+    current_date = datetime.today().date()
     congr_date_list = []
-    for user in users:
-        birthday_date = datetime.strptime(user['birthday'], '%Y.%m.%d').date()
-        current_date = datetime.today().date()
 
+    for user in users:
+        # convert srting to object date
+        birthday_date = datetime.strptime(user['birthday'], '%Y.%m.%d').date()
         birthday_this_year = birthday_date.replace(year=current_date.year)
 
+        # if birthday has already passed this year try next year
         if birthday_this_year < current_date:
-            birthday_this_year = birthday_date.replace(year=current_date.year)
+            birthday_this_year = birthday_date.replace(year=current_date.year + 1)
     
         difference_days = (birthday_this_year - current_date).days
         
+        # check if the date falls within the 7-day interval
         if 0 <= difference_days <= 7:
 
             congr_date = birthday_this_year
-
+            # transfer from weekend to Monday
+            # 6 - Sunday, 5 - Saturday
             match birthday_this_year.weekday():
                 case 6:
                     congr_date += timedelta(days=1)
@@ -88,16 +95,3 @@ def get_upcoming_birthdays(users):
             })
 
     return congr_date_list
-
-
-users = [
-    {"name": "John Doe", "birthday": "1985.01.23"},
-    {"name": "Jane Smith", "birthday": "1990.02.03"},
-    {"name": "Jane ith", "birthday": "1990.02.01"},
-    {"name": "John Doe", "birthday": "1985.01.31"},
-    {"name": "Jane Smi", "birthday": "1990.01.27"},
-    {"name": "Jane Smth", "birthday": "1990.01.25"}
-]
-
-upcoming_birthdays = get_upcoming_birthdays(users)
-print("Список привітань на цьому тижні:", upcoming_birthdays)
