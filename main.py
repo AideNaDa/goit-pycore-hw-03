@@ -5,10 +5,10 @@ import re
 
 def get_days_from_today(data: str) -> int:
     """
-    Calculates the difference in days between a specified date and the current date
+    Calculates the difference in days between a specified date and the current date.
     
-    :param data: Days string in 'YYYY-MM-DD' format
-    :return: Difference in days
+    :param data: Days string in 'YYYY-MM-DD' format.
+    :return: Difference in days.
     """
     try:
         user_data = datetime.strptime(data, '%Y-%m-%d').date()
@@ -24,10 +24,10 @@ def get_numbers_ticket(min: int, max: int, quantity: int) -> list[int]:
     """
     Generate a sorted list of unique random numbers in the given range.
     
-    :param min: Minimum value of the range (must be >= 1)
-    :param max: Maximum value of the range (must be <= 1000)
-    :param quantity: Number of unique random values to generate
-    :return: Sorted list of unique random integers or an empty list if input is invalid
+    :param min: Minimum value of the range (must be >= 1).
+    :param max: Maximum value of the range (must be <= 1000).
+    :param quantity: Number of unique random values to generate.
+    :return: Sorted list of unique random integers or an empty list if input is invalid.
     """
     if not (1 <= min <= max <= 1000) or not (0 < quantity <= (max - min + 1)):
         return []
@@ -43,8 +43,8 @@ def normalize_phone(phone_number: str) -> str:
     """
     Normalize phone number to the required format.
 
-    :param phone_number: Dirty phone number format
-    :return: Phone number starting with "+380" and containing only digits
+    :param phone_number: Dirty phone number format.
+    :return: Phone number starting with "+380" and containing only digits.
     """
 
     # remove spaces, dashes and other symbols, keep only digits and leading '+'
@@ -61,7 +61,7 @@ def normalize_phone(phone_number: str) -> str:
 
 def get_upcoming_birthdays(users: list[dict]) -> list[dict]:
     """
-    Finds birthdays within 7 days and carries over congratulations from weeks
+    Finds birthdays within 7 days and carries over congratulations from weeks.
     """
     current_date = datetime.today().date()
     congr_date_list = []
