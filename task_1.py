@@ -16,3 +16,8 @@ def get_days_from_today(data_str: str) -> int:
         raise ValueError(
             f"Invalid date format: {data}, expected YYYY-MM-DD"
         ) from None
+
+
+if __name__ = '__main__':
+    print(get_days_from_today("2021-10-09"))
+    print(get_days_from_today("2027-10-09"))
