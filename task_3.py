@@ -1,5 +1,6 @@
 import re
 
+
 def normalize_phone(phone_number: str) -> str:
     """
     Normalize phone number to the required format.
