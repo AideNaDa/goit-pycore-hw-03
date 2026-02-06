@@ -1,5 +1,5 @@
-from datetime import datetime
-from datetime import timedelta
+from datetime import datetime, timedelta
+
 
 def get_upcoming_birthdays(users: list[dict]) -> list[dict]:
     """
@@ -37,3 +37,13 @@ def get_upcoming_birthdays(users: list[dict]) -> list[dict]:
             })
 
     return congr_date_list
+
+
+if __name__ == '__main__':
+    users = [
+        {"name": "John Doe", "birthday": "1985.01.23"},
+        {"name": "Jane Smith", "birthday": "1990.01.27"}
+    ]
+    
+    upcoming_birthdays = get_upcoming_birthdays(users)
+    print("Список привітань на цьому тижні:", upcoming_birthdays)
