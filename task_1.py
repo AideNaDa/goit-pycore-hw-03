@@ -14,7 +14,7 @@ def get_days_from_today(data_str: str) -> int:
         return (now_date - user_data).days 
     except ValueError:
         raise ValueError(
-            f"Invalid date format: {data}, expected YYYY-MM-DD"
+            f"Invalid date format: {data_str}, expected YYYY-MM-DD"
         ) from None
 
 
